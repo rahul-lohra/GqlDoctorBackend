@@ -40,10 +40,9 @@ dependencies {
     implementation "io.ktor:ktor-client-core:$ktor_version"
     implementation "io.ktor:ktor-client-core-jvm:$ktor_version"
     implementation "io.ktor:ktor-client-apache:$ktor_version"
-    implementation "org.mongodb:mongodb-driver:$mongoDb_driver_version"
     implementation "io.ktor:ktor-locations:$ktor_version"
-//    implementation "org.litote.kmongo:kmongo:$kmongo_version"
-//    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinx_serialization_version"
+    implementation "org.litote.kmongo:kmongo:$kmongo_version"
+    implementation "io.ktor:ktor-serialization:$ktor_version"
 
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

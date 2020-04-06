@@ -8,7 +8,7 @@ import com.mongodb.client.MongoDatabase
 import org.bson.codecs.configuration.CodecRegistries
 import org.bson.codecs.configuration.CodecRegistry
 import org.bson.codecs.pojo.PojoCodecProvider
-//import org.litote.kmongo.KMongo
+import org.litote.kmongo.KMongo
 
 class MongoDb {
 
@@ -25,13 +25,12 @@ class MongoDb {
     }
 
     fun connect() {
-//        setupKMongo()
-        setupNormalMongoDb()
+        setupKMongo()
     }
 
     fun setupKMongo(){
-//        mongoClient = KMongo.createClient(CONNECTION_STRING)
-//        mongoDatabase = mongoClient.getDatabase(DATABASE_NAME)
+        mongoClient = KMongo.createClient(CONNECTION_STRING)
+        mongoDatabase = mongoClient.getDatabase(DATABASE_NAME)
     }
 
     fun setupNormalMongoDb(){
