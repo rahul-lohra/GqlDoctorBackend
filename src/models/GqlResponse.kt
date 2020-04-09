@@ -22,7 +22,7 @@ data class CreateGqlRecord(
     val createdAt: Long,
     val updatedAt: Long,
     val gOprName: String,
-    val tag: String?
+    val tag: String?= null
 )
 
 fun CreateGqlRecord.toGqlRecord(): GqlRecord {
@@ -46,11 +46,12 @@ data class RestRecord(
     @BsonId val id: String = UUID.randomUUID().toString()
 )
 
+@Serializable
 data class CreateRestRecord(
     val response: String,
     val createdAt: Long,
     val updatedAt: Long,
-    val tag: String?,
+    val tag: String? = null,
     val url: String,
     val httpMethod: String
 )
