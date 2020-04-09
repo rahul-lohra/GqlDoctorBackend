@@ -11,7 +11,7 @@ import io.ktor.routing.Routing
 import io.ktor.routing.get
 import javax.inject.Inject
 
-const val BOOKS = "/v1/books"
+const val BOOKS = Constants.V1 + "/books"
 
 class RouteBooks @Inject constructor (val booksRepository: BooksRepository, routing: Routing) {
 

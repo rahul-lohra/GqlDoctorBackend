@@ -2,6 +2,7 @@ package com.rahul.di.modules
 
 import com.mongodb.client.MongoDatabase
 import com.rahul.repository.BooksRepository
+import com.rahul.repository.GqlRecordRepository
 import com.rahul.repository.PostsRepository
 import dagger.Module
 import dagger.Provides
@@ -17,5 +18,10 @@ class RepositoryModule {
     @Provides
     fun provideBookRepository(mongoDatabase: MongoDatabase):BooksRepository{
         return BooksRepository(mongoDatabase)
+    }
+
+    @Provides
+    fun provideGqlRepository(mongoDatabase: MongoDatabase):GqlRecordRepository{
+        return GqlRecordRepository(mongoDatabase)
     }
 }

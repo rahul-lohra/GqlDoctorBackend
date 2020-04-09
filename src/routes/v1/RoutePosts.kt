@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import org.bson.Document
 import javax.inject.Inject
 
-const val TEST_POST_ROUTE = "/v1/posts"
+const val TEST_POST_ROUTE = Constants.V1 + "/posts"
 
 @KtorExperimentalLocationsAPI
 @Location(TEST_POST_ROUTE)
@@ -24,12 +24,12 @@ class RoutePosts @Inject constructor(val postsRepository: PostsRepository, routi
 
     init {
         routing {
-            posts(postsRepository)
+            get(postsRepository)
         }
     }
 }
 
-fun Route.posts(postsRepository: PostsRepository) {
+fun Route.get(postsRepository: PostsRepository) {
     get(TEST_POST_ROUTE) {
         withContext(Dispatchers.IO) {
             val data = postsRepository.getPosts()
