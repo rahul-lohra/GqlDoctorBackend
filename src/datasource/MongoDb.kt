@@ -29,7 +29,11 @@ class MongoDb {
     }
 
     fun setupKMongo(){
-        mongoClient = KMongo.createClient(CONNECTION_STRING)
+        val mongoSettings = MongoClientSettings.builder()
+            .applyConnectionString(ConnectionString(CONNECTION_STRING))
+            .retryWrites(false)
+            .build()
+        mongoClient = KMongo.createClient(mongoSettings)
         mongoDatabase = mongoClient.getDatabase(DATABASE_NAME)
     }
 

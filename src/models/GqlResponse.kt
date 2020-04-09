@@ -16,6 +16,7 @@ data class GqlRecord(
     @BsonId val id: String = UUID.randomUUID().toString()
 )
 
+@Serializable
 data class CreateGqlRecord(
     val response: String,
     val createdAt: Long,

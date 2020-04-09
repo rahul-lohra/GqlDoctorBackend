@@ -5,12 +5,12 @@ import com.rahul.models.CreateGqlRecord
 import com.rahul.repository.GqlRecordRepository
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
-import io.ktor.locations.KtorExperimentalLocationsAPI
-import io.ktor.locations.post
+import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.Routing
 import io.ktor.routing.get
+import io.ktor.routing.post
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -22,14 +22,14 @@ class RouteGql @Inject constructor(val repository: GqlRecordRepository, routing:
     init {
         routing {
             get(repository)
-//            post(repository)
+            post(repository)
         }
     }
 }
 
 fun Route.get(repository: GqlRecordRepository) {
     get(GQL_RECORD) {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             val items = repository.getAllItems()
             if (!items.isNullOrEmpty())
                 call.respond(HttpStatusCode.OK, items)
@@ -39,9 +39,12 @@ fun Route.get(repository: GqlRecordRepository) {
     }
 }
 
-//fun Route.post(repository: GqlRecordRepository) {
-//    post<CreateGqlRecord> { request ->
-//        repository.insert(request)
-//        call.respond(HttpStatusCode.OK)
-//    }
-//}
+fun Route.post(repository: GqlRecordRepository) {
+    post(GQL_RECORD) {
+        withContext(Dispatchers.IO) {
+            val request = call.receive<CreateGqlRecord>()
+            repository.insert(request)
+            call.respond(HttpStatusCode.OK)
+        }
+    }
+}
