@@ -30,7 +30,8 @@ class RouteGql @Inject constructor(val repository: GqlRecordRepository, routing:
 fun Route.get(repository: GqlRecordRepository) {
     get(GQL_RECORD) {
         withContext(Dispatchers.IO) {
-            val items = repository.getAllItems()
+
+            val items = repository.getAllItems(call.request.queryParameters)
             if (!items.isNullOrEmpty())
                 call.respond(HttpStatusCode.OK, items)
             else

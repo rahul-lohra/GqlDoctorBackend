@@ -10,7 +10,7 @@ data class GqlRecord(
     val response: String,
     val createdAt: Long,
     val updatedAt: Long,
-    val gOprName: String,
+    val opr: String,
     val tag: String?,
     @SerialName("_id")
     @BsonId val id: String = UUID.randomUUID().toString()
@@ -21,7 +21,7 @@ data class CreateGqlRecord(
     val response: String,
     val createdAt: Long,
     val updatedAt: Long,
-    val gOprName: String,
+    val opr: String,
     val tag: String?= null
 )
 
@@ -30,7 +30,7 @@ fun CreateGqlRecord.toGqlRecord(): GqlRecord {
         response = response,
         createdAt = createdAt,
         updatedAt = updatedAt,
-        gOprName = gOprName,
+        opr = opr,
         tag = tag
     )
 }
