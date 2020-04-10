@@ -1,18 +1,29 @@
 package com.rahul.repository
 
+import com.mongodb.BasicDBObject
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.rahul.models.*
+import io.ktor.http.Parameters
 import org.bson.BsonValue
 import javax.inject.Inject
 
 
 class RestRecordRepository @Inject constructor (val mongoDatabase: MongoDatabase) {
 
-    val COLLECTION_NAME = "restRecord"
+    private val COLLECTION_NAME = "restRecord"
+    private val filterableKeys = arrayListOf(GqlRecord::opr.name, GqlRecord::tag.name)
 
-    fun getAllItems(): List<RestRecord> {
-        return getCollection().find().toList()
+    fun getAllItems(queryParameters: Parameters): List<RestRecord> {
+        val whereQuery = BasicDBObject()
+        filterableKeys.forEach {
+            val paramValue = queryParameters[it]
+            if (!paramValue.isNullOrEmpty()) {
+                whereQuery[it] = BasicDBObject("\$regex", "$paramValue.*")
+            }
+        }
+
+        return getCollection().find(whereQuery).toList()
     }
 
     fun insert(record: CreateRestRecord): BsonValue?{

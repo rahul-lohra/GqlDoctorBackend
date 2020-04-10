@@ -32,7 +32,7 @@ class RouteRest @Inject constructor(val repository: RestRecordRepository, routin
 fun Route.get(repository: RestRecordRepository) {
     get(REST_RECORD) {
         withContext(Dispatchers.IO) {
-            val items = repository.getAllItems()
+            val items = repository.getAllItems(call.parameters)
             if (!items.isNullOrEmpty())
                 call.respond(HttpStatusCode.OK, items)
             else
