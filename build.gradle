@@ -68,5 +68,5 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-task stage(dependsOn: ['shadowJar', 'clean'])
+task stage(dependsOn: ['shadowJar','clean'])
 build.mustRunAfter clean
