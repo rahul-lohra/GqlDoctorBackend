@@ -2,7 +2,7 @@ buildscript {
     repositories {
         jcenter()
     }
-    
+
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -68,5 +68,5 @@ dependencies {
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
-task stage(dependsOn: ['shadowJar','clean'])
+task stage(dependsOn: ['shadowJar', 'clean'])
 build.mustRunAfter clean
