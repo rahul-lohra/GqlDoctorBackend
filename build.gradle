@@ -49,3 +49,6 @@ dependencies {
 
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
