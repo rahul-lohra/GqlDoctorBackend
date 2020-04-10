@@ -18,7 +18,7 @@ apply plugin: 'kotlinx-serialization'
 
 group 'com.rahul'
 version '0.0.1'
-mainClassName = 'io.ktor.server.netty.EngineMain'
+mainClassName = 'com.rahul.ApplicationKt'
 
 shadowJar {
     manifest {

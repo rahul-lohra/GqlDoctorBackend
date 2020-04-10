@@ -13,7 +13,7 @@ import io.ktor.serialization.json
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 
-fun main(args: Array<String>) {
+fun main() {
     val server = Server()
     val port = System.getenv("PORT")?.toInt() ?: 8083
     val nettyServer = embeddedServer(Netty, port = port) {
